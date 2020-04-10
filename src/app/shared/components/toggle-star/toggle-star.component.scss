@@ -1,0 +1,15 @@
+:host {
+  cursor: pointer;
+  user-select: none;
+
+  &.marked {
+    fa-icon {
+      color: var(--orange);
+    }
+  }
+}
+
+fa-icon {
+  font-size: 22px;
+  color: var(--black);
+}

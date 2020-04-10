@@ -1,0 +1,13 @@
+<div class="container">
+  <app-new-contact-form
+    (contactAdd)="onContactAdd($event)"
+  >
+  </app-new-contact-form>
+
+  <app-contact-list
+    [contactList]="contactList"
+    (favoriteMarkToggle)="onFavoriteMarkToggle($event)"
+    (contactDelete)="onContactDelete($event)"
+  >
+  </app-contact-list>
+</div>
