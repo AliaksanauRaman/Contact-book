@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -55,12 +55,24 @@ export class NewContactFormComponent implements OnInit, OnDestroy {
   }
 
   private initForm(): void {
-    this.newContactForm = this.formBuilder.group(
-      this.newContactFormFields.reduce((prev, curr) => ({
-        ...prev,
-        [curr.control.name]: [curr.control.initialValue, curr.control.validators],
-      }), {}),
-    );
+    this.newContactForm = this.formBuilder.group({
+      firstName: [
+        '',
+        [Validators.maxLength(20)],
+      ],
+      lastName: [
+        '',
+        [Validators.required, Validators.maxLength(20)],
+      ],
+      patronymic: [
+        '',
+        [Validators.maxLength(20)],
+      ],
+      phoneNumber: [
+        '',
+        [Validators.required, Validators.pattern(/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/)],
+      ],
+    });
   }
 
   private subOnTyping(): void {
