@@ -48,6 +48,38 @@ describe('CustomInputComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should call onChange method when component value is being set or patch', () => {
+    const data = 'some string';
+    const spyOnChange = spyOn(component, 'onChange');
+
+    component.writeValue(data);
+
+    expect(spyOnChange).toHaveBeenCalledWith(data);
+  });
+
+  it('should set form value to null when empty of undefined value passed', () => {
+    const data = '';
+    const spyOnSetValue = spyOn(component.formControl, 'setValue');
+
+    component.writeValue(data);
+
+    expect(spyOnSetValue).toHaveBeenCalledWith(null);
+  });
+
+  it('should set the onChange function value when registerOnChange is being called', () => {
+    const tempFunction = function() {};
+    component.registerOnChange(tempFunction);
+
+    expect(component.onChange).toEqual(tempFunction);
+  });
+
+  it('should set the onTouch function value when registerOnTouched is being called', () => {
+    const tempFunction = function() {};
+    component.registerOnTouched(tempFunction);
+
+    expect(component.onTouch).toEqual(tempFunction);
+  });
+
   it('should initialize the inner formControl', () => {
     expect(component.formControl).toBeDefined();
   });

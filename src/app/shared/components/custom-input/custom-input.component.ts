@@ -1,4 +1,4 @@
-import { Component, Input, forwardRef, ViewChild, ChangeDetectionStrategy, ElementRef, OnInit } from '@angular/core';
+import { Component, Input, forwardRef, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl } from '@angular/forms';
 
 import { ICustomField } from '../../../models/custom-field.models';
@@ -56,6 +56,7 @@ export class CustomInputComponent implements OnInit, ControlValueAccessor {
   private markFormAsTouched(): void {
     this.formControl.markAsTouched();
     this.formControl.markAsDirty();
+    this.onTouch();
   }
 
   private initControl(): void {
