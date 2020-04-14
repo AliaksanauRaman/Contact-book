@@ -1,18 +1,13 @@
 import { Injectable } from '@angular/core';
 
 import { IContact } from '../models/contact.models';
-import { Contact } from '../classes/contact';
-
-const initialContacts: IContact[] = [
-  { ...new Contact('Первый', '+7(111)111-11-11', 'Контакт', 'В телефоне'), id: 1 },
-  { ...new Contact('Второй', '+7(222)222-22-22', 'Контакт', 'В телефоне'), id: 2, },
-];
+import { INITIAL_CONTACTS } from '../constants/contacts';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactsService {
-  private contactList: IContact[] = initialContacts.slice();
+  private contactList: IContact[] = INITIAL_CONTACTS.slice();
 
   public getContacts(): IContact[] {
     return this.contactList
