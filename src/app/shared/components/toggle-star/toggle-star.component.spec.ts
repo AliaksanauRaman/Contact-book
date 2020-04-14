@@ -1,5 +1,6 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 import { ToggleStarComponent } from './toggle-star.component';
 
@@ -27,6 +28,16 @@ describe('ToggleStarComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should have different icons for different isMarked states', () => {
+    component.isMarked = true;
+
+    const currentIcon: IconDefinition = component.starIcon;
+
+    component.isMarked = false;
+
+    expect(component.starIcon).not.toEqual(currentIcon);
+  });
+
   it('should add marked class when isMarked value sets to true', () => {
     expect(component.isMarkedClass).toBeFalsy();
 
@@ -41,13 +52,5 @@ describe('ToggleStarComponent', () => {
     component.isMarked = true;
 
     expect(component.title).toBe('Убрать из избранного');
-  });
-
-  it('should make title empty when corresponding flag is set', () => {
-    expect(component.title).toBe('Добавить в избранное');
-
-    component.useTitle = false;
-
-    expect(component.title).toBe('');
   });
 });

@@ -1,5 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, forwardRef, HostBinding } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { Component, ChangeDetectionStrategy, Input, HostBinding } from '@angular/core';
 import { faStar as faSolidStar, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { faStar as faRegularStar } from '@fortawesome/free-regular-svg-icons';
 
@@ -7,16 +6,9 @@ import { faStar as faRegularStar } from '@fortawesome/free-regular-svg-icons';
   selector: 'app-toggle-star',
   templateUrl: './toggle-star.component.html',
   styleUrls: ['./toggle-star.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => ToggleStarComponent),
-      multi: true,
-    },
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ToggleStarComponent implements ControlValueAccessor {
+export class ToggleStarComponent {
   @Input()
   public set isMarked(value: boolean) {
     this._isMarked = value;
@@ -44,24 +36,9 @@ export class ToggleStarComponent implements ControlValueAccessor {
       : 'Добавить в избранное';
   }
 
-  private _isMarked: boolean;
-
-  public onChange = (value: boolean) => {};
-  public onTouch = () => {};
+  private _isMarked = false;
 
   public get starIcon(): IconDefinition {
     return this.isMarked ? faSolidStar : faRegularStar;
-  }
-
-  public writeValue(value: boolean): void {
-    this.onChange(value);
-  }
-
-  public registerOnChange(fn: (value: boolean) => void): void {
-    this.onChange = fn;
-  }
-
-  public registerOnTouched(fn: () => void): void {
-    this.onTouch = fn;
   }
 }
