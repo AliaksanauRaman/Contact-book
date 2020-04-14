@@ -57,7 +57,7 @@ export const NEW_CONTACT_FORM_FIELDS: ICustomField[] = [
       initialValue: '',
       validators: [
         Validators.required,
-        Validators.pattern(/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/),
+        Validators.pattern(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/),
       ],
     },
     mask: {

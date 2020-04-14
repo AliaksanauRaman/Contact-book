@@ -70,7 +70,7 @@ export class NewContactFormComponent implements OnInit, OnDestroy {
       ],
       phoneNumber: [
         '',
-        [Validators.required, Validators.pattern(/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/)],
+        [Validators.required, Validators.pattern(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/)],
       ],
     });
   }
